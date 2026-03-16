@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+
+    <div class="card shadow p-4" style="width: 400px;">
+        <h4 class="text-center mb-3">Student Form</h4>
+
+        <form #studentForm="ngForm" (ngSubmit)="onSubmit(studentForm)">
+
+            <div class="mb-3">
+                <label class="form-label">Student ID</label>
+                <input type="number" class="form-control" name="studentid" [(ngModel)]="student.studentid"
+                    #studentid="ngModel" required>
+
+                <div class="text-danger" *ngIf="studentid.invalid && studentid.touched">
+                    Student ID is required.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Student Name</label>
+                <input type="text" class="form-control" name="studentname" [(ngModel)]="student.studentname"
+                    #studentname="ngModel" required minlength="3">
+
+                <div class="text-danger" *ngIf="studentname.invalid && studentname.touched">
+                    <div *ngIf="studentname.errors?.['required']">
+                        Student Name is required.
+                    </div>
+                    <div *ngIf="studentname.errors?.['minlength']">
+                        Minimum 3 characters required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Department</label>
+                <input type="text" class="form-control" name="department" [(ngModel)]="student.department"
+                    #department="ngModel" required>
+
+                <div class="text-danger" *ngIf="department.invalid && department.touched">
+                    Department is required.
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Semester</label>
+                <input type="number" class="form-control" name="semester" [(ngModel)]="student.semester"
+                    #semester="ngModel" required min="1">
+
+                <div class="text-danger" *ngIf="semester.invalid && semester.touched">
+                    <div *ngIf="semester.errors?.['required']">
+                        Semester is required.
+                    </div>
+                    <div *ngIf="semester.errors?.['min']">
+                        Semester must be at least 1.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">CGPA</label>
+                <input type="number" class="form-control" name="cgpa" [(ngModel)]="student.cgpa" #cgpa="ngModel"
+                    required min="1" max="10" step="0.1">
+
+                <div class="text-danger" *ngIf="cgpa.invalid && cgpa.touched">
+                    <div *ngIf="cgpa.errors?.['required']">
+                        CGPA is required.
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">
+                Save Student
+            </button>
+            <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">
+                Cancel
+            </button>
+        </form>
+    </div>
+</div>

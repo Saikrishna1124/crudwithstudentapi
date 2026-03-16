@@ -1,0 +1,52 @@
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold">Student List</h4>
+    </div>
+
+    <p>
+        <button class="btn btn-sm btn-warning me-1" routerLink="/studentadd">
+            <i class="fas fa-add"></i> Add Student
+        </button>
+    </p>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th style="width:5%">#</th>
+                            <th>Student Name</th>
+                            <th>Department</th>
+                            <th>Semester</th>
+                            <th>CGPA</th>
+                            <th style="width:12%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(student of students; track $index) {
+                        <tr>
+                            <td>{{$index + 1}}</td>
+                            <td>{{student.studentname}}</td>
+                            <td>{{student.department}}</td>
+                            <td>{{student.semester}}</td>
+                            <td>{{student.cgpa}}</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning me-1"
+                                    [routerLink]="['/studentedit', student.studentid]">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+
+                                <button class="btn btn-sm btn-danger" (click)="deleteStudent(student.studentid)">
+                                    <i class="fas fa-trash"></i> Del
+                                </button>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
