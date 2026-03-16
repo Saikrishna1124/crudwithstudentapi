@@ -7,7 +7,7 @@ import { StudentModel, StudentResponse } from '../models/student.model';
   providedIn: 'root',
 })
 export class Studentservice {
-  apiUrl = 'http://localhost:3000/api/v1';
+  apiUrl = "https://studentapi-4-fo44.onrender.com/api/v1";
 
   http = inject(HttpClient);
 
